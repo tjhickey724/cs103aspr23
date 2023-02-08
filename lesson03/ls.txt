@@ -1,0 +1,8 @@
+total 272
+-rw-r--r--@   1 tim  staff  138011 Jan 18 10:54 231COSI-103A-1_1672779721.pdf
+drwxr-xr-x   11 tim  staff     352 Jan 19 09:49 CoreSEtopics
+drwxr-xr-x    3 tim  staff      96 Jan 18 11:59 lesson01
+drwxr-xr-x    5 tim  staff     160 Jan 22 13:12 lesson02
+drwxr-xr-x    3 tim  staff      96 Jan 23 10:34 lesson03
+-rw-r--r--    1 tim  staff       0 Jan 23 11:23 ls.txt
+drwxr-xr-x  128 tim  staff    4096 Jan 18 10:42 misc-20230118

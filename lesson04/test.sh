@@ -1,0 +1,1 @@
+echo $(($testnum*2))

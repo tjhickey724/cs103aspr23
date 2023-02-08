@@ -1,0 +1,6 @@
+print("Hello, world!")
+print()
+print("This program produces")
+print("four lines of output")
+print("こにちわ")
+print("\\hello\nhow\tare \"you\"?\\\\")

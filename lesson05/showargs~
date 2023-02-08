@@ -1,0 +1,4 @@
+#!/bin/bash
+echo arg1 is $1
+echo num args is $n
+echo command is $0

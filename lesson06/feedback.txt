@@ -1,0 +1,9 @@
+
+
+Improvements:
+* have an onscreen display with realtime command history
+* its hard to apply new concepts right after learning them, maybe just give lots of examples
+* give more example problems ...
+
+Other comments
+* why doesn't it work in powershell (NEED TO CONNECT TO TIARA FROM WINDOWS)

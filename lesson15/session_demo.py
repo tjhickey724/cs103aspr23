@@ -1,6 +1,5 @@
 from flask import session,request,redirect,url_for,Flask
 
-
 app = Flask(__name__)
 
 # Set the secret key to some random bytes. Keep this really secret!

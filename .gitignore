@@ -1,4 +1,9 @@
 .DS_Store
 pa*
 my*
-
+secret*
+*data*
+courses*
+__pycache__
+.ipynb_checkpoints
+.pytest_cache

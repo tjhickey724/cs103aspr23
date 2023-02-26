@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Overview</h1>
+  <p>Welcome {{name}}</p>
+  <p>Visit the <a href="{{url_for('counter')}}">counter page</a></p>
+  <p>Visit a static page:<a href="/static/hello.txt">hello.txt</a></p>
+  <p>Do you want to <a href="{{ url_for('logout') }}">log out?</a>
+{% endblock %}

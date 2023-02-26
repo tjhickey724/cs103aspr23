@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Testing</h1>
+  <p>the counter shows the number of times you visited this page.
+    It is reset when you go to the index page. The global is reset
+    if anyone goes to the index page and is incremented if anyone visits
+    that page. The local only resets when the user visits index or 
+    refreshes the counter page.
+  </p>
+  <p>local_counter = {{local_counter}}</p>
+  <p>global_counter = {{global_counter}}</p>
+  <p><a href="{{url_for('counter')}}">refresh this page</a></p>
+  <p>Visit a static page:<a href="/static/hello.txt">hello.txt</a></p>
+  <p>Return to the <a href="{{url_for('index')}}">index page</a></p>
+  
+
+{% endblock %}
+

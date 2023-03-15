@@ -18,7 +18,7 @@ On Windows:
 % $env:APIKEY="....." # in powershell
 % python gptwebapp.py
 '''
-from flask import request,redirect,url_for,Flask
+from Flask import request,redirect,url_for,Flask
 from gpt import GPT
 import os
 

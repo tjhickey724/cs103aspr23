@@ -7,6 +7,7 @@ import pytest
 import sqlite3
 from todolist3 import TodoList, to_dict, tuples_to_dicts
 
+
 @pytest.fixture
 def tuples():
     " create some tuples to put in the database "

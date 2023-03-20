@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>info</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Info</h1>
+    <p> <%= time %></p>
+    <ul>
+      <li>age in days <%= age*365.25 %></li>
+      <li>developer: <%= owner %></li>
+    </ul>
+
+    <form method="post" action="/getData">
+        name: <input type="text" name="full_name"><br>
+        age: <input type="number" name="age"><br>
+        <select name="sex">
+            <option>male</option>
+            <option>female</option>
+            <option>prefer not to say</option>
+        </select>
+        <textarea name="bio">
+            put stuff here
+        </textarea>
+        <input type="submit">
+    </form>
+     
+  </body>
+</html>

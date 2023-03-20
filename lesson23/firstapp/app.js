@@ -19,8 +19,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use((req,res,next) => {
+  console.log('we are handling the request')
+  req.mynote='demo'
+  next() 
+})
+
+app.get('/', (req, res, next) => {
+  res.render('index');
+});
+
+app.get('/info', (req,res,next)=> {
+  res.locals.time = Date()
+  res.locals.owner="Tim Hickey"
+  res.locals.age=67
+  res.render('info')
+})
+
+app.post('/getData',(req,res,next) => {
+  console.dir(req.body)
+  res.json(req.body)
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

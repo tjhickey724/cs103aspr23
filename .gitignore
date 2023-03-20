@@ -1,5 +1,6 @@
 .DS_Store
-pa*
+pa??
+package-lock*
 my*
 node_modules
 secret*

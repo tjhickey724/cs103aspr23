@@ -1,16 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
-
+const pw_auth_router = require('./routes/pwauth')
 
 
 const User = require('./models/User');
 
+/* **************************************** */
+/*  Connecting to a Mongo Database Server   */
+/* **************************************** */
 const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo';
-// const mongodb_URI = 'mongodb://127.0.0.1:27017/pwdemo';
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 const mongoose = require( 'mongoose' );
@@ -25,8 +27,11 @@ db.once('open', function() {
   console.log("we are connected!!!")
 });
 
-const pw_auth_router = require('./routes/pwauth')
 
+
+/* **************************************** */
+/* Enable sessions and storing session data in the database */
+/* **************************************** */
 const session = require("express-session"); // to handle sessions using cookies 
 var MongoDBStore = require('connect-mongodb-session')(session);
 
@@ -41,8 +46,21 @@ store.on('error', function(error) {
 });
 
 
+/* **************************************** */
+/*  middleware to make sure a user is logged in */
+/* **************************************** */
+function isLoggedIn(req, res, next) {
+  "if they are logged in, continue; otherwise redirect to /login "
+  if (res.locals.loggedIn) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
-
+/* **************************************** */
+/* creating the app */
+/* **************************************** */
 var app = express();
 
 app.use(session({
@@ -79,9 +97,12 @@ app.get('/', (req,res,next) => {
   res.render('index');
 })
 
-app.get('/about', (req,res,next) => {
-  res.render('about');
-})
+app.get('/about', 
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('about');
+  }
+)
 
 
 

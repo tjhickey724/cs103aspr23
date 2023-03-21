@@ -7,9 +7,12 @@ const layouts = require("express-ejs-layouts");
 
 
 
-const User = require('./models/User')
+const User = require('./models/User');
 
-const mongodb_URI = 'mongodb://127.0.0.1:27017/pwdemo';
+const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo';
+// const mongodb_URI = 'mongodb://127.0.0.1:27017/pwdemo';
+console.log('MONGODB_URI=',process.env.MONGODB_URI);
+
 const mongoose = require( 'mongoose' );
 
 mongoose.connect( mongodb_URI);

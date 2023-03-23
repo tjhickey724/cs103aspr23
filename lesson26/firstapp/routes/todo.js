@@ -24,7 +24,9 @@ isLoggedIn = (req,res,next) => {
 router.get('/todo/',
   isLoggedIn,
   async (req, res, next) => {
-      res.locals.items = await ToDoItem.find({userId:req.user._id})
+      res.locals.items = 
+        await ToDoItem.find(
+           {userId:req.user._id}).sort({completed:1})
       res.render('toDoList');
 });
 
@@ -36,7 +38,7 @@ router.post('/todo',
       const todo = new ToDoItem(
         {item:req.body.item,
          createdAt: new Date(),
-         complete: false,
+         completed: false,
          userId: req.user._id
         })
       await todo.save();
@@ -48,6 +50,16 @@ router.get('/todo/remove/:itemId',
   async (req, res, next) => {
       console.log("inside /todo/remove/:itemId")
       await ToDoItem.deleteOne({_id:req.params.itemId});
+      res.redirect('/toDo')
+});
+
+router.get('/todo/complete/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /todo/complete/:itemId")
+      await ToDoItem.findOneAndUpdate(
+        {_id:req.params.itemId},
+        {$set: {completed:true}} );
       res.redirect('/toDo')
 });
 

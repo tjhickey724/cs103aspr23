@@ -7,6 +7,15 @@
            <a href="/todo/remove/<%=item._id %>">X</a>
            ::
            <%= item.item %>
+           <a class="btn btn-sm btn-danger"
+              href="/todo/complete/<%= item._id %>">
+              COMPLETE?
+           </a>
+           <% if (item.completed) { %>
+            done!!!
+           <% } else {%>
+            todo  
+           <%} %>
           <br>
       <% }) %>
 

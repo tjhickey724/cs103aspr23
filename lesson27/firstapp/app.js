@@ -6,6 +6,7 @@ const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
 const toDoRouter = require('./routes/todo');
+const weatherRouter = require('./routes/weather');
 
 const User = require('./models/User');
 
@@ -91,6 +92,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(pw_auth_router)
+
 app.use(layouts);
 
 app.get('/', (req,res,next) => {
@@ -105,6 +107,7 @@ app.get('/about',
 )
 
 app.use(toDoRouter);
+app.use(weatherRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

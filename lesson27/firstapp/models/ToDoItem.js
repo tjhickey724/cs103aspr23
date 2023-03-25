@@ -8,6 +8,7 @@ var toDoItemSchema = Schema( {
   item: String,
   completed: Boolean,
   createdAt: Date,
+  priority: Number,
   userId: ObjectId
 } );
 

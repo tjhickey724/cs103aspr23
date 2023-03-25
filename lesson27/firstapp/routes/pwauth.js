@@ -23,13 +23,23 @@ const User = require('../models/User')
 
 
 // This is an example of middleware
-// where we look at a request and process it!
+// where we look at a request and print it on the console
+// before continuing on with other steps!
 router.use(function(req, res, next) {
   console.log(`${req.method} ${req.url} ${new Date()}`);
   next();
 });
 
-
+// this next route is also middleware that modifies the
+// req and res objects for later routes to access.
+// First, it checks the session variable: req.session
+// if it has a username then it means the user has logged in
+// and it can send the username and user object to the views
+// via res.locals.  It also adds the user to req.user
+// so it can be accessed in two ways: res.locals.user or req.user
+// if the user hasn't logged in (or has logged out),
+// it sets the user and username to null just to be safe
+//
 router.use((req,res,next) => {
   if (req.session.username) {
     res.locals.loggedIn = true
@@ -50,6 +60,12 @@ router.get("/login", (req,res) => {
   res.render("pwlogin")
 })
 
+// this handles the login form data
+// it checks gets the username and passphrase from the form
+// then it looks up the user with that username (if any)
+// the user object stores a heavily encrypted version of the passphrase
+// if the passphrase from the form has the same encryption, then
+// the user has been authenticated
 router.post('/login',
   async (req,res,next) => {
     try {
@@ -62,6 +78,7 @@ router.post('/login',
         req.session.user = user
         res.redirect('/')
       } else {
+        console.log('incorrect username or passphrase ')
         req.session.username = null
         req.session.user = null
         res.redirect('/login')
@@ -71,6 +88,11 @@ router.post('/login',
     }
   })
 
+// when a user signs up it encrypts their password
+// with multiple salted rounds (look it up!)
+// and if the username has not already been claimed
+// it adds them to the User model and redirects to route
+// as an authenticated user.
 router.post('/signup',
   async (req,res,next) =>{
     try {

@@ -96,6 +96,7 @@ router.post('/login',
 router.post('/signup',
   async (req,res,next) =>{
     try {
+      // here we use destructuring to get fields from req.body
       const {username,passphrase,passphrase2,age} = req.body
       if (passphrase != passphrase2){
         res.redirect('/login')

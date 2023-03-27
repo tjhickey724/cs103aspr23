@@ -29,7 +29,7 @@ const get_latlon = async (address) => {
 
 // returns a forecast for any US location
 // given by lattitude and longitude
-const get_forecaseURL = async (latlon) => {
+const get_forecastURL = async (latlon) => {
   let url = "https://api.weather.gov/points/"+
               latlon.y+","+latlon.x
   const response = await axios.get(url)
@@ -41,7 +41,7 @@ const get_weather = async (address) => {
   if (matches.length==0) {
     return ([])
   } else {
-    const url = await get_forecaseURL(matches[0].coordinates)
+    const url = await get_forecastURL(matches[0].coordinates)
     const response = await axios.get(url)
     return (response.data.properties.periods)
   }

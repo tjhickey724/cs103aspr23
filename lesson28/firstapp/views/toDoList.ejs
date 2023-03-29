@@ -1,0 +1,55 @@
+
+  <div>
+    <h1> ToDo List for <%= user.googlename %> </h1>
+    <p> Here is your list of things to do! </p>
+    
+    <ul class="list-group">
+      <% items.forEach(item => { %>
+           <li class="list-group-item">
+              <span class="">
+                  <% if (item.completed) { %>
+                    <a 
+                      href="/todo/uncomplete/<%= item._id %>">
+                      <i class="bi bi-check-circle-fill"></i>
+                  </a>
+                  <% } else {%>
+                    <a 
+                      href="/todo/complete/<%= item._id %>">
+                      <i class="bi bi-check-circle"></i>
+                  </a>
+                  <%} %>
+                  <a href="/todo/remove/<%=item._id %>">
+                    <i class="bi bi-trash"></i>
+                  </a>
+              </span>
+              <span class="ml-5">
+                <%= item.item %>
+              </span>
+              <span class="badge rounded-pill bg-danger">
+                <%= item.priority?item.priority:5 %> 
+              </span>
+                 
+           </li>
+          <br>
+      <% }) %>
+      <p class="m-2">
+        <% if (show=='completed'){%>
+          <a href="?show=todo">(Show tasks to do)</a>
+        <% }else {%>
+          <a href="?show=completed">(Show completed tasks)</a>
+        <%}%>
+      </p>
+      <form method="post" action="todo">
+          new item: <input type="text" name="item">
+          priority: <select name="priority">
+            <option>1 </option>
+            <option>2 </option>
+            <option>3 </option>
+            <option>4 </option>
+            <option>5 </option>
+          </select>
+          <br>
+          <input type="submit" value="store">
+      </form>
+
+  </div>

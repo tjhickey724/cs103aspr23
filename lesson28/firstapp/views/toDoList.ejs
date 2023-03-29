@@ -2,7 +2,13 @@
   <div>
     <h1> ToDo List for <%= user.googlename %> </h1>
     <p> Here is your list of things to do! </p>
-    
+    <p class="m-2">
+      <% if (show=='completed'){%>
+        <a href="?show=todo">(Show tasks to do)</a>
+      <% }else {%>
+        <a href="?show=completed">(Show completed tasks)</a>
+      <%}%>
+    </p>
     <ul class="list-group">
       <% items.forEach(item => { %>
            <li class="list-group-item">
@@ -22,25 +28,23 @@
                     <i class="bi bi-trash"></i>
                   </a>
               </span>
-              <span class="ml-5">
+              <span class="mx-5">
                 <%= item.item %>
               </span>
               <span class="badge rounded-pill bg-danger">
                 <%= item.priority?item.priority:5 %> 
               </span>
+              <a href="/todo/edit/<%=item._id %>">
+                <i class="bi bi-pencil-square"></i>
+            </a>
                  
            </li>
           <br>
       <% }) %>
-      <p class="m-2">
-        <% if (show=='completed'){%>
-          <a href="?show=todo">(Show tasks to do)</a>
-        <% }else {%>
-          <a href="?show=completed">(Show completed tasks)</a>
-        <%}%>
-      </p>
+
       <form method="post" action="todo">
           new item: <input type="text" name="item">
+          <br>
           priority: <select name="priority">
             <option>1 </option>
             <option>2 </option>

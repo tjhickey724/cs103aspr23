@@ -7,7 +7,6 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/ToDoItem')
 const axios = require('axios')
 
 router.get('/weather', (req,res,next) => {
@@ -46,6 +45,14 @@ const get_weather = async (address) => {
     return (response.data.properties.periods)
   }
 }
+
+
+router.post('/latlon.json',
+  async (req,res,next) => {
+    const latlon = await get_latlon(req.body.address)
+    res.json(latlon)
+  }
+)
 
 router.post('/weather.json',
   async (req,res,next) => {

@@ -37,7 +37,10 @@ router.get('/todo/',
                         .sort({completed:1,priority:1,createdAt:1})
 
       }
-            res.render('toDoList',{items,show,completed});
+      // res.locals.items = items
+      // res.local.show = show
+      // res.locals.completed = completed
+      res.render('toDoList',{items,show,completed});
 });
 
 
@@ -101,6 +104,9 @@ router.post('/todo/updateTodoItem',
   isLoggedIn,
   async (req, res, next) => {
       const {itemId,item,priority} = req.body;
+      // const itemId = req.body.itemId
+      // const item  = req.body.item
+      // const priority = req.body.priority
       console.log("inside /todo/complete/:itemId");
       await ToDoItem.findOneAndUpdate(
         {_id:itemId},

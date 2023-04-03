@@ -115,13 +115,15 @@ router.get('/todo/byUser',
       let results =
             await ToDoItem.aggregate(
                 [ 
+                  {$match:{
+                    completed: true}},
                   {$group:{
                     _id:'$userId',
                     total:{$count:{}}
                     }},
                   {$sort:{total:-1}},              
                 ])
-              
+        //res.json(results)   
         results = 
            await User.populate(results,
                    {path:'_id',
@@ -131,6 +133,39 @@ router.get('/todo/byUser',
         res.render('summarizeByUser',{results})
 });
 
+router.get('/todo/byItemName',
+  isLoggedIn,
+  async (req, res, next) => {
+      let results =
+            await ToDoItem.aggregate(
+                [ 
+                  {$match:{
+                    completed: true}},
+                  {$group:{
+                    _id:'$item',
+                    count:{$sum: 1}
+                    }},
+                  {$sort:{count:-1}},              
+                ])
+        res.json(results)   
+
+});
+
+router.get('/todo/byCompletion',
+  isLoggedIn,
+  async (req, res, next) => {
+      let results =
+            await ToDoItem.aggregate(
+                [ 
+                  {$group:{
+                    _id:'$completed',
+                    count:{$sum: 1}
+                    }},
+                  {$sort:{count:-1}},              
+                ])
+        res.json(results)   
+
+});
 
 
 module.exports = router;

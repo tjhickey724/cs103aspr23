@@ -47,7 +47,7 @@ export default function App() {
   }
 
   
-
+  // demo of how to get data from an Express server
   useEffect(() => {
     const getMsg = async () => {
       const response = await fetch('http://localhost:3000/test');
@@ -64,12 +64,21 @@ export default function App() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
+  // this is used to allow text data to be submitted
+  // when the user hits the 'Enter' key
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       // 👇 Get input value
       add_item();
     }
   };
+
+  function toggleCompleted(item){
+    item.completed = !item.completed;
+    setItems([...items]);  // force redraw of screen
+  }
+
+
   return (
     <div className="App">
       <h1>Tim's Todo List</h1>
@@ -77,9 +86,12 @@ export default function App() {
       <table>
         <tbody>
             {items.map((item) => (
-            <tr>
-              <td>{item["desc"]}</td>
+            <tr>       
               <td><button onClick={()=>deleteItem(item["key"])}>X</button></td>
+              <td><button onClick={()=>toggleCompleted(item)}>
+                {item['completed']?'C':'+'}
+                </button></td>
+              <td>{item["desc"]}</td>
             </tr>
             ))}
         </tbody>

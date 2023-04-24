@@ -47,22 +47,24 @@ export default function App() {
   }
 
   
-  // demo of how to get data from an Express server
-  useEffect(() => {
-    const getMsg = async () => {
-      const response = await fetch('http://localhost:3000/test');
-      const result = await response.json();
-      setMsg(result);
-      console.log('msg =',result);
-    }
-    getMsg()
-  },[msg])
+
 
 
   useEffect(() => {
     // storing items if items changes value
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
+
+  // // demo of how to get data from an Express server
+  // useEffect(() => {
+  //   const getMsg = async () => {
+  //     const response = await fetch('http://localhost:3000/test');
+  //     const result = await response.json();
+  //     setMsg(result);
+  //     console.log('msg =',result);
+  //   }
+  //   getMsg()
+  // },[msg])
 
   // this is used to allow text data to be submitted
   // when the user hits the 'Enter' key
@@ -104,7 +106,7 @@ export default function App() {
              id="item" placeholder="description" />
       <button onClick={() => add_item()}>add Todo</button>
       
-      <h2> list of items in JSON </h2>
+      <h2> DEBUGGING: list of items in JSON </h2>
       <pre>
        {JSON.stringify(items, null, 5)}
       </pre>

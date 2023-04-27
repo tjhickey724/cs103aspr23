@@ -12,8 +12,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1>Our First NextJS Demo!</h1>
+      <main className="container">
+        <h1 className="bg-warning text-center">Our First NextJS Demo!</h1>
         <Link href="/test">Visit the test page</Link>
       </main>
     </>

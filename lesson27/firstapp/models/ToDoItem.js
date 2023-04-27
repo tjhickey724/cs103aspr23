@@ -11,4 +11,4 @@ var toDoItemSchema = Schema( {
   userId: ObjectId
 } );
 
-module.exports = mongoose.model( 'ToDoItem', toDoItemSchema );
+module.exports = mongoose.model( 'ToDoItemGroup12', toDoItemSchema );

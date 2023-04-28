@@ -23,6 +23,11 @@ export default function navbar(){
                 
                 </li>
                 <li class="nav-item">
+                    <Link className="nav-link" 
+                          href="/profile"> Profile</Link>
+                
+                </li>
+                <li class="nav-item">
                 <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>

@@ -5,12 +5,14 @@ export default function TaskList({tasks,deleteTask}) {
         <ul>
         {tasks.map((item) => 
             <li>
-                <button 
-                    onClick={()=> deleteTask(item._id)}
-                    className="me-2">
-                  X
-                </button>
                 {item.description}
+                <a 
+                    onClick={()=> deleteTask(item._id)}
+                    className="ms-2">
+                  <i className="bi-trash"></i>
+                </a>
+                
+                
             </li>
         )} 
       </ul>

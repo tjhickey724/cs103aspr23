@@ -45,12 +45,18 @@ export default function ToDoList() {
 
   return (
     <div className="container">
-    <h1>{tasklist} To Do List</h1> 
+    <h1 className="p-2 border-bottom border-start border-5 border-primary">
+        {tasklist} To Do List
+    </h1> 
       <TaskList tasks={tasks} deleteTask={deleteTask} />
       <hr/>
-      <h1>Add item to {tasklist} To Do List </h1>
+      <h1 className="p-2 border-bottom border-start border-5 border-primary">
+        Add item to {tasklist} To Do List 
+      </h1>
       <input type="text" id="taskname" name="description" placeholder="description"/>
-      <button onClick = 
+      <button 
+        className = "btn btn-sm btn-primary"
+        onClick = 
         {() => {
                 const taskname = document.getElementById('taskname').value
                 addTask(taskname,tasklist)
@@ -60,13 +66,16 @@ export default function ToDoList() {
         </button>
         <br/>
         <input type="text" id="tasklist" placeholder={tasklist}/>        
-        <button onClick=
+        <button 
+          className = "btn btn-sm btn-primary"
+          onClick=
             {() => setTasklist(document.getElementById('tasklist').value)
             }> 
                 change tasklist name
         </button>
         <br/>
         <button
+           className = "btn btn-sm btn-warning"
            onClick={()=>setDebugging(!debugging)}>
                 toggle debugging
         </button>

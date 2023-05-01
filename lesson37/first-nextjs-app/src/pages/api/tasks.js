@@ -11,7 +11,7 @@ export default async function handler (req, res) {
     case 'GET':
       try {
         const tasklist = req.query.tasklist || 'general'
-        const tasks = await Task.find({tasklist})
+        const tasks = await Task.find({tasklist}).sort({completed:1})
         res.status(200).json({ success: true, tasks: tasks })
       } catch (error) {
         res.status(400).json({ success: false })
